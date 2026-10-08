@@ -62,3 +62,19 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 .DS_Store
+
+# LaTeX (РПЗ и презентация): промежуточные файлы сборки
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.xdv
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+.texpadtmp/
