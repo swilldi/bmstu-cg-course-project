@@ -1,0 +1,161 @@
+% !TEX root = report.tex
+\documentclass[a4paper, 14pt]{extreport}
+\usepackage{fontspec}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,cite,float}
+\usepackage{graphicx}
+\usepackage[inkscapeformat=png]{svg}
+\usepackage{tocloft}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{indentfirst}
+\usepackage{pdfpages}
+\usepackage{letltxmacro}
+\usepackage{threeparttable}
+\usepackage{flafter}
+\usepackage[shortlabels]{enumitem}
+\usepackage{multirow}
+\usepackage{tabularray}
+\usepackage[figure,table]{totalcount}
+\usepackage{lastpage}
+
+\usepackage{nicematrix}
+% столбец заданной доли ширины строки, центрированный по обеим осям
+% \hspace{0pt} разрешает перенос первого слова в ячейке
+\newcolumntype{C}[1]{>{\centering\arraybackslash\hspace{0pt}}m{\dimexpr#1\linewidth-2\tabcolsep\relax}}
+% курсовая: то же, но с выравниванием по левому краю (для текстовых столбцов)
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash\hspace{0pt}}m{\dimexpr#1\linewidth-2\tabcolsep\relax}}
+
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+\UseTblrLibrary{diagbox}
+
+
+\setmainfont{Times New Roman}          % или CMU Serif
+%\setmonofont{JetBrains Mono}[Scale=0.85]
+\setmonofont{Menlo}[Scale=0.85]
+
+
+
+\setlist{nosep}
+
+\newcommand{\ssr}[1]{\begin{center}
+		\LARGE\bfseries{#1}
+	\end{center} \addcontentsline{toc}{chapter}{#1}  }
+
+% заголовок списка источников оформляется так же, как ВВЕДЕНИЕ и ЗАКЛЮЧЕНИЕ
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\thebibliography}
+  {\chapter*{\bibname\@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}}}
+  {\ssr{\bibname}}{}{}
+\makeatother
+
+\makeatletter
+\renewcommand\LARGE{\@setfontsize\LARGE{22pt}{20}}
+\renewcommand\Large{\@setfontsize\Large{20pt}{20}}
+\renewcommand\large{\@setfontsize\large{16pt}{20}}
+\makeatother
+\RequirePackage{titlesec}
+\titleformat{\chapter}[block]{\hspace{\parindent}\large\bfseries}{\thechapter}{0.5em}{\large\bfseries\raggedright}
+\titleformat{name=\chapter,numberless}[block]{\hspace{\parindent}}{}{0pt}{\large\bfseries\centering}
+\titleformat{\section}[block]{\hspace{\parindent}\large\bfseries}{\thesection}{0.5em}{\large\bfseries\raggedright}
+\titleformat{\subsection}[block]{\hspace{\parindent}\large\bfseries}{\thesubsection}{0.5em}{\large\bfseries\raggedright}
+\titleformat{\subsubsection}[block]{\hspace{\parindent}\large\bfseries}{\thesubsubsection}{0.5em}{\large\bfseries\raggedright}
+\titlespacing{\chapter}{12.5mm}{-22pt}{10pt}
+\titlespacing{\section}{12.5mm}{10pt}{10pt}
+\titlespacing{\subsection}{12.5mm}{10pt}{10pt}
+\titlespacing{\subsubsection}{12.5mm}{10pt}{10pt}
+
+\setcounter{secnumdepth}{3}
+
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.}
+\makeatother
+%
+%\titleformat{\chapter}[hang]{\LARGE\bfseries}{\hspace{1.25cm}\thechapter}{1ex}{\LARGE\bfseries}
+%\titleformat{\section}[hang]{\Large\bfseries}{\hspace{1.25cm}\thesection}{1ex}{\Large\bfseries}
+%\titleformat{name=\section,numberless}[hang]{\Large\bfseries}{\hspace{1.25cm}}{0pt}{\Large\bfseries}
+%\titleformat{\subsection}[hang]{\large\bfseries}{\hspace{1.25cm}\thesubsection}{1ex}{\large\bfseries}
+%\titlespacing{\chapter}{0pt}{-\baselineskip}{\baselineskip}
+%\titlespacing*{\section}{0pt}{\baselineskip}{\baselineskip}
+%\titlespacing*{\subsection}{0pt}{\baselineskip}{\baselineskip}
+
+\geometry{left=30mm}
+\geometry{right=15mm}
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+
+\onehalfspacing
+
+% запас растяжения пробелов, чтобы строки не вылезали за правое поле
+\setlength{\emergencystretch}{3em}
+
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand{\labelenumi}{\arabic{enumi}\text{)}}
+\renewcommand{\theenumii}{.\arabic{enumii}}
+\renewcommand{\labelenumii}{\asbuk{enumii}\text{)}}
+\renewcommand{\theenumiii}{.\arabic{enumiii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.}
+
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+
+\addto\captionsrussian{\renewcommand{\figurename}{Рисунок}}
+\DeclareCaptionLabelSeparator{dash}{~---~}
+\captionsetup{labelsep=dash}
+
+\captionsetup[figure]{justification=centering,labelsep=dash}
+\captionsetup[table]{labelsep=dash,justification=raggedright,singlelinecheck=off}
+
+\graphicspath{{img/}}%путь к рисункам
+
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\lstdefinelanguage{Swift}{
+  morekeywords={func, let, var, if, else, guard, return, while, for, in,
+    repeat, switch, case, default, break, continue, struct, class, enum,
+    import, nil, true, false, inout, where, private, public, static, self},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+}
+\lstset{ %
+	inputpath=../Sources,
+	language=Swift,                 % выбор языка для подсветки
+	basicstyle=\small\ttfamily, % размер и начертание шрифта для подсветки кода
+	numbers=none,               % где поставить нумерацию строк (слева\справа)
+	numberstyle=\tiny,           % размер шрифта для номеров строк
+	stepnumber=1,                   % размер шага между двумя номерами строк
+%	numbersep=5pt,                % как далеко отстоят номера строк от подсвечиваемого кода
+	showspaces=false,            % показывать или нет пробелы специальными отступами
+	showstringspaces=false,      % показывать или нет пробелы в строках
+	showtabs=false,             % показывать или нет табуляцию в строках
+	frame=single,              % рисовать рамку вокруг кода
+	tabsize=2,                 % размер табуляции по умолчанию равен 2 пробелам
+	captionpos=t,              % позиция заголовка вверху [t] или внизу [b] 
+	breaklines=true,           % автоматически переносить строки (да\нет)
+	breakatwhitespace=false, % переносить строки только если есть пробел
+	escapeinside={\#*}{*)},   % если нужно добавить комментарии в коде
+	abovecaptionskip=-5pt
+}
+\renewcommand{\lstlistingname}{Листинг}
+
+
+\parindent=1.25cm
+
+%\LetLtxMacro\itemold\item
+%\renewcommand{\item}{\itemindent0.75cm\itemold}
+
+\def\labelitemi{---}
+\setlist[itemize]{leftmargin=1.25cm, itemindent=0.65cm}
+\setlist[enumerate]{leftmargin=1.25cm, itemindent=0.55cm}
+
+\newcommand{\specialcell}[2][c]{%
+	\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\frenchspacing

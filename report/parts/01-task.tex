@@ -1,0 +1,17 @@
+% Лист «Задание на выполнение курсовой работы» — официальный бланк кафедры с подписями
+% заведующего кафедрой, руководителя и студента; идёт сразу после титульного листа.
+% Когда будет PDF бланка, положить его в img/task.pdf — он вставится целиком.
+\IfFileExists{img/task.pdf}{%
+	\includepdf[pages=-]{img/task.pdf}%
+}{%
+	\thispagestyle{empty}
+	\begin{center}
+		\Large\textbf{ЗАДАНИЕ}\\
+		\large\textbf{на выполнение курсовой работы}
+	\end{center}
+	\vfill
+	\begin{center}
+		(место для бланка задания)
+	\end{center}
+	\vfill
+}
