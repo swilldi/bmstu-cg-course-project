@@ -16,6 +16,8 @@
 \usepackage{letltxmacro}
 \usepackage{threeparttable}
 \usepackage{flafter}
+% курсовая: таблицы и рисунки не переносятся за границу своего подраздела
+\usepackage[section]{placeins}
 \usepackage[shortlabels]{enumitem}
 \usepackage{multirow}
 \usepackage{tabularray}
@@ -94,6 +96,10 @@
 
 % запас растяжения пробелов, чтобы строки не вылезали за правое поле
 \setlength{\emergencystretch}{3em}
+
+% курсовая: запрет висячих строк (одна строка абзаца на другой странице)
+\widowpenalty=10000
+\clubpenalty=10000
 
 \renewcommand{\theenumi}{\arabic{enumi}}
 \renewcommand{\labelenumi}{\arabic{enumi}\text{)}}
