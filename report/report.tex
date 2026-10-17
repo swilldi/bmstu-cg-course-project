@@ -1,11 +1,23 @@
 \input{preamble}
 
 \begin{document}
+	\makecourseworktitle
+    {Информатика и системы управления} % Название факультета
+    {Программное обеспечение ЭВМ и информационные технологии} % Название кафедры
+    {Разработка программного обеспечения для визуализации 3D изображения северного сияния} % Тема работы
+    {Д.~С.~Дудырев/ИУ7-52Б} % Номер группы/ФИО студента (если авторов несколько, их необходимо разделить запятой)
+    {Д.~Ю.~Мальцева} % ФИО научного руководителя
+	{}
+
 	% \include{parts/01-title}
 %	\include{parts/01-task}
-	\include{parts/02-content}
-	\include{parts/03-introduction}
-	\include{parts/04-analysis}
+	
+	\setcounter{page}{4}
+	\def\contentsname{\begin{center}\Large СОДЕРЖАНИЕ\end{center}}
+	\tableofcontents
+
+	\include{parts/00-introduction}
+	\include{parts/01-analysis/analysis.tex}
 	% \include{parts/05-design}
 	% \include{parts/06-technological}
 	% \include{parts/07-research}
