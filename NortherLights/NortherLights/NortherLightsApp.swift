@@ -10,8 +10,9 @@ import SwiftUI
 @main
 struct NortherLightsApp: App {
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("Северное сияние") {
             ContentView()
         }
+        .defaultSize(width: 1400, height: 860)
     }
 }
