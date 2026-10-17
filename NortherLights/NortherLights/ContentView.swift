@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  NortherLights
 //
-//  Created by Dmitriy on 20.09.2026.
+//  Created by Dmitriy Dudyrev on 17.10.2026.
 //
 
 import SwiftUI
