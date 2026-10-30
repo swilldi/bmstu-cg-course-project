@@ -1,0 +1,46 @@
+{
+  "terrain": {
+    "heightmap": "heightmap.png",
+    "maxHeight": 10,
+    "color": [0.92, 0.95, 1.0],
+    "reflectance": { "kd": 0.85, "ks": 0.10, "n": 8 }
+  },
+  "objects": [
+    {
+      "name": "Дом 1", "kind": "house",
+      "x": 44, "y": 53, "rotation": 20, "scale": 1.0,
+      "colors": [[0.55, 0.35, 0.22], [0.45, 0.12, 0.10]],
+      "reflectance": { "kd": 0.80, "ks": 0.15, "n": 16 }
+    },
+    {
+      "name": "Дом 2", "kind": "house",
+      "x": 57, "y": 45, "rotation": -35, "scale": 0.85,
+      "colors": [[0.70, 0.62, 0.48], [0.20, 0.25, 0.35]],
+      "reflectance": { "kd": 0.80, "ks": 0.15, "n": 16 }
+    },
+    {
+      "name": "Ель 1", "kind": "tree",
+      "x": 38, "y": 43, "rotation": 0, "scale": 1.2,
+      "colors": [[0.30, 0.20, 0.12], [0.10, 0.32, 0.16]],
+      "reflectance": { "kd": 0.90, "ks": 0.05, "n": 4 }
+    },
+    {
+      "name": "Ель 2", "kind": "tree",
+      "x": 61, "y": 58, "rotation": 0, "scale": 1.0,
+      "colors": [[0.30, 0.20, 0.12], [0.08, 0.28, 0.14]],
+      "reflectance": { "kd": 0.90, "ks": 0.05, "n": 4 }
+    },
+    {
+      "name": "Ель 3", "kind": "tree",
+      "x": 49, "y": 37, "rotation": 0, "scale": 0.9,
+      "colors": [[0.30, 0.20, 0.12], [0.12, 0.34, 0.18]],
+      "reflectance": { "kd": 0.90, "ks": 0.05, "n": 4 }
+    },
+    {
+      "name": "Автомобиль", "kind": "car",
+      "x": 51, "y": 52, "rotation": 70, "scale": 1.0,
+      "colors": [[0.10, 0.30, 0.70], [0.08, 0.08, 0.08]],
+      "reflectance": { "kd": 0.55, "ks": 0.40, "n": 64 }
+    }
+  ]
+}
