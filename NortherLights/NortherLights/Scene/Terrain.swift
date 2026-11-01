@@ -13,8 +13,10 @@ nonisolated enum Terrain {
         let w = heightmap.width, h = heightmap.height
         var positions: [SIMD3<Float>] = []
         var normals: [SIMD3<Float>] = []
+        var texcoords: [Float] = []
         positions.reserveCapacity(w * h)
         normals.reserveCapacity(w * h)
+        texcoords.reserveCapacity(2 * w * h)
         let cell = Heightmap.extent / Float(w - 1)
         for j in 0..<h {
             for i in 0..<w {
@@ -24,6 +26,7 @@ nonisolated enum Terrain {
                 let dx = (heightmap.value(i + 1, j) - heightmap.value(i - 1, j)) / (2 * cell)
                 let dy = (heightmap.value(i, j - 1) - heightmap.value(i, j + 1)) / (2 * cell)
                 normals.append(Axes.scene(simd_normalize(SIMD3(-dx, -dy, 1))))
+                texcoords += [Float(i) / Float(w - 1), Float(j) / Float(h - 1)]
             }
         }
         var indices: [UInt32] = []
@@ -36,7 +39,8 @@ nonisolated enum Terrain {
             }
         }
         let geometry = SCNGeometry(
-            sources: [vectorSource(positions, semantic: .vertex), vectorSource(normals, semantic: .normal)],
+            sources: [vectorSource(positions, semantic: .vertex), vectorSource(normals, semantic: .normal),
+                      texcoordSource(texcoords)],
             elements: [SCNGeometryElement(indices: indices, primitiveType: .triangles)]
         )
         let material = SCNMaterial()
@@ -46,6 +50,17 @@ nonisolated enum Terrain {
         let node = SCNNode(geometry: geometry)
         node.name = "terrain"
         return (node, material)
+    }
+
+    /// Текстурные координаты обязательны: материал получает текстуру источников подсветки
+    /// (`auroraLights`), и без texcoord0 SceneKit не может собрать конвейер рендера —
+    /// ландшафт пропадал после пересборки шейдера (например, при скрытии и показе).
+    private static func texcoordSource(_ uv: [Float]) -> SCNGeometrySource {
+        let data = uv.withUnsafeBufferPointer { Data(buffer: $0) }
+        return SCNGeometrySource(data: data, semantic: .texcoord, vectorCount: uv.count / 2,
+                                 usesFloatComponents: true, componentsPerVector: 2,
+                                 bytesPerComponent: MemoryLayout<Float>.size, dataOffset: 0,
+                                 dataStride: 2 * MemoryLayout<Float>.size)
     }
 
     private static func vectorSource(_ vectors: [SIMD3<Float>], semantic: SCNGeometrySource.Semantic) -> SCNGeometrySource {

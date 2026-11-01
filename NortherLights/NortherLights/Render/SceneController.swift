@@ -49,6 +49,7 @@ nonisolated final class SceneController {
         if previous?.light != settings.light {
             graph.apply(light: settings.light)
         }
+        graph.lightMarker.apply(settings.light, visible: settings.showLightMarker)
         if previous?.reflectances != settings.reflectances {
             graph.apply(reflectances: settings.reflectances)
         }

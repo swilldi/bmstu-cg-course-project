@@ -19,6 +19,7 @@ struct NortherLightsApp: App {
             }
         }
         .defaultSize(width: 1400, height: 860)
+        .windowToolbarStyle(.unified)
 
         Window("Исследование времени синтеза кадра", id: ResearchView.windowID) {
             switch model {

@@ -49,6 +49,7 @@ nonisolated final class SceneRenderer: NSObject, SCNSceneRendererDelegate {
         controller.advance(to: time)
         if let pointOfView = renderer.pointOfView {
             controller.graph.keepAboveTerrain(pointOfView)
+            controller.graph.lightMarker.follow(pointOfView)
         }
     }
 

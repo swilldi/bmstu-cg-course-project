@@ -85,8 +85,9 @@ nonisolated struct CurtainParameters: Hashable, Sendable {
 
 nonisolated struct LightParameters: Hashable, Sendable {
     /// Азимут $\varphi_L$ и высота над горизонтом $\theta_L$, градусы.
-    var azimuth: Float = 225
-    var elevation: Float = 25
+    // Луна над сценой слева от сияния — видна с начального положения наблюдателя.
+    var azimuth: Float = 125
+    var elevation: Float = 22
     var intensity: Float = 0.35
     var color = SIMD3<Float>(0.70, 0.78, 1.00)
 

@@ -19,6 +19,7 @@ nonisolated final class SceneGraph {
     let terrainNode: SCNNode
     let objectsNode = SCNNode()
     let auroraVolume = AuroraVolume()
+    let lightMarker = LightMarker()
     /// Материалы каждой поверхности: [0] — ландшафт, далее объекты в порядке файла описания.
     let surfaceMaterials: [[SCNMaterial]]
 
@@ -41,6 +42,7 @@ nonisolated final class SceneGraph {
 
         sunNode = Self.makeSunLight()
         scene.rootNode.addChildNode(sunNode)
+        scene.rootNode.addChildNode(lightMarker.node)
 
         let camera = SCNCamera()
         camera.fieldOfView = 60  // постоянный угол обзора по вертикали

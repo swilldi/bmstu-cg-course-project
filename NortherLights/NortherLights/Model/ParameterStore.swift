@@ -29,6 +29,7 @@ nonisolated struct RenderSettings: Equatable, Sendable {
     var reflectances: [Reflectance]
     var showTerrain: Bool
     var showObjects: Bool
+    var showLightMarker: Bool
     var animate: Bool
     var animationSpeed: Float
 }
@@ -56,6 +57,8 @@ final class ParameterStore {
     var surfaces: [SurfaceSettings]
     var showTerrain = true
     var showObjects = true
+    /// Показывать источник на бесконечности диском на небе.
+    var showLightMarker = true
     var animate = true
     var animationSpeed: Float = 1
 
@@ -92,6 +95,7 @@ final class ParameterStore {
             reflectances: surfaces.map(\.reflectance),
             showTerrain: showTerrain,
             showObjects: showObjects,
+            showLightMarker: showLightMarker,
             animate: animate,
             animationSpeed: animationSpeed
         )

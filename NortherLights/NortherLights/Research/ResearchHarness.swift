@@ -53,6 +53,7 @@ nonisolated final class ResearchHarness {
             reflectances: reflectances,
             showTerrain: true,
             showObjects: true,
+            showLightMarker: true,
             animate: false,
             animationSpeed: 0
         )
@@ -106,6 +107,7 @@ nonisolated final class ResearchHarness {
         renderer.scene = graph.scene
         renderer.pointOfView = graph.cameraNode
         graph.place(camera: graph.cameraNode, at: Self.fixedObserver)
+        graph.lightMarker.follow(graph.cameraNode)
 
         baseSettings = Self.fixedSettings(reflectances: description.allReflectances)
     }
